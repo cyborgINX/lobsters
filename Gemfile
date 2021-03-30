@@ -1,11 +1,10 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 6.0.3.3"
+gem "rails", "~> 6.0.3.4"
 
-gem "mysql2"
-
-# uncomment to use PostgreSQL
-# gem "pg"
+# uncomment to use MySQL/PostgreSQL
+# gem "mysql2"
+gem "pg"
 
 # rails
 gem 'scenic'
@@ -47,6 +46,11 @@ gem "sitemap_generator" # for better search engine indexing
 gem "svg-graph", require: 'SVG/Graph/TimeSeries' # for charting, note workaround in lib/time_series.rb
 gem 'transaction_retry' # mitigate https://github.com/lobsters/lobsters-ansible/issues/39
 
+# deployment
+gem 'dotenv'
+
+
+
 group :test, :development do
   gem 'capybara'
   gem 'database_cleaner'
@@ -63,4 +67,12 @@ group :test, :development do
   gem "vcr"
   gem "webmock" # used to support vcr
   gem 'simplecov', require: false
+  
+  # capistrano - digitalocean deploy
+  # Ref - https://cdrrazan.com/blog/deploying-your-first-rails-app-in-digitalocean/
+  gem 'capistrano', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma', require: false
 end
